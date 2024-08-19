@@ -52,4 +52,32 @@ export class UserDaoService {
     }
   }
 
+  deleteUser = async (id: number) => {
+    try {
+      const result = this.dbClient.user.delete({
+        where: { id }
+      })
+      return ({
+        success: true,
+        message: "Customer deleted successfully...",
+        result
+      })
+    } catch(error) {
+      return ({
+        success: false,
+        message: "Unsuccessfull delete...",
+      })
+    }
+  }
+
+  updateUser = async ( id: number, data: Prisma.userUpdateInput ) => {
+
+    console.log('Type of ID:', typeof(id))
+      const result = await this.dbClient.user.update({
+        where: { id },
+        data
+      })
+
+    }
+
 }
