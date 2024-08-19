@@ -1,15 +1,29 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserDaoService } from './user-dao.service';
+import {Prisma} from '.prisma/schema-webapi/client/webapi'
+import { UserModel } from '@user-list/prisma-schema/models';
 
 @Controller('user')
 export class UserDaoController {
-  constructor(private userDaoService: UserDaoService) {}
+  constructor(private service: UserDaoService) {}
 
   @Get()
-  getData() {
-    return {
-      message: 'Helo User!'
-    };
+  async getAll() {
+    return await this.service.getAll()
+  }
+
+  @Get('/:id')
+  async getOneById(
+    @Param('id') id: string
+  ) {
+    return await this.service.getById(Number(id))
+  }
+
+  @Post('create')
+  async createUser(
+    @Body() body: Prisma.userCreateInput//UserModel.CreateUser
+  ) {
+    return await this.service.createUser(body)
   }
 }
 

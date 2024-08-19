@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@user-list/pgsql-client": ["libs/pgsql-client/src/index.ts"],
+      "@user-list/prisma-schema": ["libs/prisma-schema/src/index.ts"],
+      "@user-list/prisma-schema/models": ["libs/prisma-schema/models/index.ts"],
       "@user-list/user-dao": ["libs/user-dao/src/index.ts"]
     }
   },
